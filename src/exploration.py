@@ -25,3 +25,14 @@ print(df.isnull().sum())
 # Afficher les informations générales
 print("\nInformations générales :")
 df.info()
+# Vérifier les doublons
+print("\nNombre de doublons :")
+print(df.duplicated().sum())
+
+# Statistiques descriptives
+print("\nStatistiques descriptives :")
+print(df.describe())
+
+# Répartition des classes
+print("\nRépartition Humain / Bot :")
+print(df["label"].value_counts())

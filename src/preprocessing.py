@@ -1,3 +1,5 @@
+import joblib
+import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -39,3 +41,8 @@ print("Taille y_test  :", y_test.shape)
 
 print("\nRépartition de la cible :")
 print(y.value_counts())
+# Sauvegarder le scaler
+os.makedirs("models", exist_ok=True)
+joblib.dump(scaler, "models/scaler.pkl")
+
+print("\nScaler sauvegardé avec succès !")
