@@ -8,7 +8,7 @@ from sklearn.preprocessing import StandardScaler
 df = pd.read_csv("data/bot_sessions.csv")
 
 # 2. Supprimer la colonne profile
-df = df.drop(columns=["profile"])
+df = df.drop(columns=["profile", "distinct_user_agents"])
 
 # 3. Séparer les caractéristiques (X) et la cible (y)
 X = df.drop(columns=["label"])
