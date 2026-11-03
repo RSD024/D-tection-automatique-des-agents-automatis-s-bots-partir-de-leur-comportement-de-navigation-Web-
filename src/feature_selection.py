@@ -21,4 +21,32 @@ sns.heatmap(correlation, cmap="coolwarm", center=0)
 plt.title("Matrice de corrélation")
 plt.tight_layout()
 plt.show()
-print("Valeurs différentes :", df["distinct_user_agents"].nunique())
+from sklearn.ensemble import RandomForestClassifier
+
+# Préparer les données
+X = df.drop(columns=["label"])
+y = df["label"]
+
+# Entraîner Random Forest
+rf = RandomForestClassifier(random_state=42)
+rf.fit(X, y)
+
+# Calculer l'importance des variables
+importance = pd.DataFrame({
+    "Variable": X.columns,
+    "Importance": rf.feature_importances_
+})
+
+importance = importance.sort_values(
+    by="Importance", ascending=False
+)
+
+print("\nImportance des variables :")
+print(importance)
+
+# Visualiser les importances
+plt.figure(figsize=(10, 6))
+sns.barplot(data=importance, x="Importance", y="Variable")
+plt.title("Importance des variables - Random Forest")
+plt.tight_layout()
+plt.show()
